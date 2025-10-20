@@ -1,12 +1,9 @@
 /* ========== Design System ========== */
 :root {
-  /* Cores principais */
   --color-primary: #00897b;
   --color-primary-light: #26a69a;
   --color-secondary: #f9a825;
   --color-secondary-dark: #f57f17;
-
-  /* Cores neutras */
   --color-neutral-100: #ffffff;
   --color-neutral-200: #f9f9f9;
   --color-neutral-400: #cccccc;
@@ -14,25 +11,21 @@
   --color-neutral-800: #333333;
   --color-neutral-900: #111111;
 
-  /* Tipografia */
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-md: 1rem;      /* 16px */
-  --font-size-lg: 1.25rem;   /* 20px */
-  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
 
-  /* Espaçamentos */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
   --space-4: 32px;
   --space-5: 40px;
 
-  /* Sombra */
   --shadow-default: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -60,12 +53,14 @@ h1, h2, h3 {
 
 /* Navbar */
 .navbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-primary);
   color: var(--color-neutral-100);
   padding: var(--space-2) var(--space-3);
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -82,7 +77,6 @@ h1, h2, h3 {
   display: none;
 }
 
-/* Navegação */
 .nav-links {
   list-style: none;
   display: flex;
@@ -104,7 +98,7 @@ h1, h2, h3 {
   color: var(--color-neutral-900);
 }
 
-/* Banner da página Sobre */
+/* Banner */
 .banner img {
   width: 100%;
   border-radius: 8px;
@@ -195,7 +189,7 @@ footer {
   width: 100%;
 }
 
-/* Animação simples fade-in */
+/* Fade-in */
 .fade-in {
   animation: fadeInAnimation 1s ease forwards;
   opacity: 0;
@@ -207,7 +201,7 @@ footer {
   }
 }
 
-/* Responsividade */
+/* ===== Menu Mobile ===== */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -216,23 +210,21 @@ footer {
   .nav-links {
     position: absolute;
     top: 100%;
+    left: 0;
     right: 0;
     background: var(--color-primary);
     flex-direction: column;
-    width: 200px;
     display: none;
+    z-index: 10;
   }
 
   .nav-links.open {
     display: flex;
   }
 
-  .nav-links li {
-    margin: 0;
-  }
-
   .nav-links li a {
     padding: var(--space-3);
     border-bottom: 1px solid var(--color-primary-light);
+    text-align: center;
   }
 }

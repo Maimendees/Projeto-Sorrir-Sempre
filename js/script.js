@@ -1,4 +1,4 @@
-// Menu mobile toggle
+// Toggle menu mobile
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -7,22 +7,20 @@ menuToggle.addEventListener('click', () => {
   menuToggle.setAttribute('aria-expanded', isOpen);
 });
 
-// SPA: páginas como templates JS
+// Templates SPA
 const templates = {
   sobre: `
     <section class="banner fade-in">
       <img src="imagens/foto650.jpeg" alt="Projeto Sorrir Sempre" />
     </section>
-
-    <section class="sobre fade-in">
+    <section class="fade-in">
       <h2>Sobre o Projeto</h2>
       <p>
         O <strong>Projeto Sorrir Sempre</strong> é uma ONG que oferece cuidados odontológicos gratuitos a comunidades carentes.
         Nosso lema é: <em>“Um sorriso pode não mudar o mundo, mas muda o dia de alguém.”</em>
       </p>
     </section>
-
-    <section class="contato fade-in">
+    <section class="fade-in">
       <h2>Contato</h2>
       <ul>
         <li><strong>Email:</strong> contato@sorrirsempre.org</li>
@@ -56,7 +54,6 @@ const templates = {
       <form id="formCadastro" novalidate>
         <fieldset>
           <legend>Informações Pessoais</legend>
-
           <label for="nome">Nome Completo:</label>
           <input type="text" id="nome" name="nome" required />
 
@@ -64,18 +61,10 @@ const templates = {
           <input type="email" id="email" name="email" required />
 
           <label for="cpf">CPF:</label>
-          <input type="text" id="cpf" name="cpf" required pattern="\\d{11}" title="Digite 11 números do CPF sem pontos ou traços" placeholder="12345678900" />
+          <input type="text" id="cpf" name="cpf" required pattern="\\d{11}" placeholder="12345678900" />
 
           <label for="telefone">Telefone (DDD + número):</label>
-          <input
-            type="tel"
-            id="telefone"
-            name="telefone"
-            required
-            pattern="\\(\\d{2}\\) \\d{4,5}-\\d{4}"
-            title="Digite o telefone no formato (11) 98765-4321"
-            placeholder="(11) 98765-4321"
-          />
+          <input type="tel" id="telefone" name="telefone" required placeholder="(11) 98765-4321" />
 
           <label for="dataNascimento">Data de Nascimento:</label>
           <input type="date" id="dataNascimento" name="dataNascimento" required />
@@ -83,12 +72,11 @@ const templates = {
 
         <fieldset>
           <legend>Endereço</legend>
-
           <label for="endereco">Endereço:</label>
           <input type="text" id="endereco" name="endereco" required />
 
           <label for="cep">CEP:</label>
-          <input type="text" id="cep" name="cep" required pattern="\\d{5}-?\\d{3}" title="Digite o CEP no formato 12345-678 ou 12345678" placeholder="12345-678" />
+          <input type="text" id="cep" name="cep" required pattern="\\d{5}-?\\d{3}" placeholder="12345-678" />
 
           <label for="cidade">Cidade:</label>
           <input type="text" id="cidade" name="cidade" required />
@@ -116,33 +104,27 @@ function loadPage(page) {
   app.innerHTML = templates[page];
   navItems.forEach(item => item.classList.remove('active'));
   document.querySelector(`.nav-links a[data-page="${page}"]`).classList.add('active');
-  menuToggle.setAttribute('aria-expanded', false);
   navLinks.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', false);
 
-  if (page === 'cadastro') {
-    setupForm();
-  }
+  if (page === 'cadastro') setupForm();
 }
 
-// Máscara para telefone com DDD
 function setupForm() {
   const telefoneInput = document.getElementById('telefone');
   const form = document.getElementById('formCadastro');
 
   telefoneInput.addEventListener('input', (e) => {
-    let valor = e.target.value.replace(/\D/g, '');
-    if (valor.length > 11) valor = valor.slice(0, 11);
-
+    let valor = e.target.value.replace(/\D/g, '').slice(0, 11);
     if (valor.length > 10) {
       valor = valor.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else if (valor.length > 5) {
       valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
     } else if (valor.length > 2) {
       valor = valor.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
-    } else if (valor.length > 0) {
+    } else {
       valor = valor.replace(/^(\d{0,2})/, '($1');
     }
-
     e.target.value = valor;
   });
 
@@ -157,7 +139,6 @@ function setupForm() {
   });
 }
 
-// Evento para mudar páginas SPA
 navItems.forEach(item => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
@@ -166,5 +147,4 @@ navItems.forEach(item => {
   });
 });
 
-// Carrega a página inicial
 loadPage('sobre');
