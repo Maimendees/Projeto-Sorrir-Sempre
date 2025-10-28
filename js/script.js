@@ -56,7 +56,7 @@ const templates = {
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required />
           <label for="cpf">CPF:</label>
-          <input type="text" id="cpf" name="cpf" required pattern="\\d{11}" title="Digite 11 números do CPF sem pontos ou traços" placeholder="12345678900" />
+          <input type="text" id="cpf" name="cpf" required pattern="\\d{11}" title="Digite 11 números do CPF sem pontos ou traços" placeholder="00000000000" />
           <label for="telefone">Telefone (DDD + número):</label>
           <input
             type="tel"
@@ -64,8 +64,8 @@ const templates = {
             name="telefone"
             required
             pattern="\\(\\d{2}\\) \\d{4,5}-\\d{4}"
-            title="Digite o telefone no formato (11) 98765-4321"
-            placeholder="(11) 98765-4321"
+            title="Digite o telefone no formato (11) 99999-9999"
+            placeholder="(11) 99999-9999"
           />
           <label for="dataNascimento">Data de Nascimento:</label>
           <input type="date" id="dataNascimento" name="dataNascimento" required />
@@ -75,7 +75,7 @@ const templates = {
           <label for="endereco">Endereço:</label>
           <input type="text" id="endereco" name="endereco" required />
           <label for="cep">CEP:</label>
-          <input type="text" id="cep" name="cep" required pattern="\\d{5}-?\\d{3}" title="Digite o CEP no formato 12345-678 ou 12345678" placeholder="12345-678" />
+          <input type="text" id="cep" name="cep" required pattern="\\d{5}-?\\d{3}" title="Digite o CEP no formato 00000-000 ou 00000000" placeholder="00000-000" />
           <label for="cidade">Cidade:</label>
           <input type="text" id="cidade" name="cidade" required />
           <label for="estado">Estado:</label>
